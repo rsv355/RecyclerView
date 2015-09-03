@@ -43,15 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
         mAdapter = new MyAdapter(myDataset);
+        mAdapter.setType(0);
+        mAdapter.setHasStableIds(true);
+
         mRecyclerView.setAdapter(mAdapter);
 
-       // mAdapter.setHasStableIds(true);
-
         mRecyclerView.setItemAnimator(new LandingAnimator());
-        mRecyclerView.getItemAnimator().setAddDuration(1000);
-        mRecyclerView.getItemAnimator().setRemoveDuration(1000);
-        mRecyclerView.getItemAnimator().setMoveDuration(1000);
-        mRecyclerView.getItemAnimator().setChangeDuration(1000);
+        mRecyclerView.getItemAnimator().setAddDuration(500);
+        mRecyclerView.getItemAnimator().setRemoveDuration(500);
+        mRecyclerView.getItemAnimator().setMoveDuration(500);
+        mRecyclerView.getItemAnimator().setChangeDuration(500);
 
 
         ImageView imageView1 = (ImageView)findViewById(R.id.imageView1);
@@ -67,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
                     mLayoutManager = new GridLayoutManager(MainActivity.this,2);
                     mRecyclerView.setLayoutManager(mLayoutManager);
+                    mAdapter.notifyDataSetChanged();
 
-                    mRecyclerView.invalidateItemDecorations();
 
                     VIEW=0;
                 }else{
@@ -77,10 +78,8 @@ public class MainActivity extends AppCompatActivity {
                     mAdapter.setType(0);
 
                     mLayoutManager = new LinearLayoutManager(MainActivity.this);
-
                     mRecyclerView.setLayoutManager(mLayoutManager);
-
-                    mRecyclerView.invalidateItemDecorations();
+                    mAdapter.notifyDataSetChanged();
 
                     VIEW=1;
                 }

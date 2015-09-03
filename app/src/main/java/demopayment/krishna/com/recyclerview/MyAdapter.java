@@ -14,6 +14,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<String> mDataset;
     static int VIEW_TYPE;
 
+    // 0 - for List Type
+    // 1 - for Gri Type
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View v) {
             super(v);
