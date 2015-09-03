@@ -14,10 +14,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<String> mDataset;
     static int VIEW_TYPE;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View v) {
             super(v);
@@ -85,7 +81,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         ViewHolder vh;
 
         switch (viewType){
-            case 0:
+            case 0 :
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
                 ListViewHolder lv = new ListViewHolder(v);
                 return lv;
@@ -103,8 +99,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         final String name = mDataset.get(position);
-       // holder.txtHeader.setText(mDataset.get(position));
-
 
         switch (viewHolder.getItemViewType () ) {
             case 0:
