@@ -31,13 +31,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public class ListViewHolder extends ViewHolder{
         public TextView txtHeader;
-        public TextView txtFooter;
-        public RelativeLayout listView;
+        public LinearLayout listView;
         public ListViewHolder ( View itemView ) {
             super ( itemView );
             txtHeader = (TextView) itemView.findViewById(R.id.firstLine);
-            txtFooter = (TextView) itemView.findViewById(R.id.secondLine);
-            listView = (RelativeLayout) itemView.findViewById(R.id.listView);
+            listView = (LinearLayout) itemView.findViewById(R.id.listView);
         }
     }
 
@@ -49,7 +47,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public GridViewHolder ( View itemView ) {
             super ( itemView );
             txtHeader1 = (TextView) itemView.findViewById(R.id.firstLine);
-            txtFooter1 = (TextView) itemView.findViewById(R.id.secondLine);
             gridView = (LinearLayout) itemView.findViewById(R.id.gridView);
         }
     }
