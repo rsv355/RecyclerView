@@ -121,32 +121,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 return vhGroup0;
         }
 
-
-
-
-
-
-
-      /*  switch (viewType){
-            case 0 :
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
-                ListViewHolder lv = new ListViewHolder(v);
-                return lv;
-            case 1:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid, parent, false);
-                GridViewHolder gv = new GridViewHolder(v);
-                return gv;
-            default:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
-                vh = new ViewHolder ( v );
-                return vh;
-        }*/
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         final String name = mDataset.get(position);
-        Log.e("##### NAME",name);
 
         switch (viewHolder.getItemViewType () ) {
             case 0:
