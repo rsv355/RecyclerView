@@ -3,6 +3,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="8dp"
+    android:id="@+id/gridView"
     android:background="#80494949"
     android:padding="6dip" >
 

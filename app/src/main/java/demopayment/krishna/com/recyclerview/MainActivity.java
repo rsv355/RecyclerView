@@ -9,17 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements onSingleClickListener,onLongClickListener {
     private RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> myDataset = new ArrayList<>();
-    int VIEW =1;
+    int VIEW = 1;
 
 
     @Override
@@ -27,14 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        for(int i=0;i<30;i++)
-        myDataset.add("Item "+i);
+        for (int i = 0; i < 30; i++)
+            myDataset.add("Item " + i);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setItemViewCacheSize(0);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
@@ -42,8 +41,25 @@ public class MainActivity extends AppCompatActivity {
 
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
-        mAdapter.setType(0);
+        mAdapter = new MyAdapter(MainActivity.this, myDataset);
+        //mAdapter.setType(0);
+
+
+        mAdapter.setSingleClickListener(new onSingleClickListener() {
+            @Override
+            public void onSingleClick(int pos) {
+                Toast.makeText(MainActivity.this, "Single Click Item Pos: " + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mAdapter.setLongClickListener(new onLongClickListener() {
+
+            @Override
+            public void onLongClick(int pos) {
+                Toast.makeText(MainActivity.this, "Long Click Item Pos: " + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         mAdapter.setHasStableIds(true);
 
         mRecyclerView.setAdapter(mAdapter);
@@ -55,37 +71,32 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.getItemAnimator().setChangeDuration(500);
 
 
-        ImageView imageView1 = (ImageView)findViewById(R.id.imageView1);
+        ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //0 -List view
                 // 1 - for grid view
 
-                if(VIEW==1){
+                if (VIEW == 1) {
 
                     mAdapter.setType(1);
 
-                    mLayoutManager = new GridLayoutManager(MainActivity.this,2);
+                    mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
                     mRecyclerView.setLayoutManager(mLayoutManager);
                     mAdapter.notifyDataSetChanged();
-
-
-                    VIEW=0;
-                }else{
+                    VIEW = 0;
+                } else {
 
 
                     mAdapter.setType(0);
-
                     mLayoutManager = new LinearLayoutManager(MainActivity.this);
                     mRecyclerView.setLayoutManager(mLayoutManager);
                     mAdapter.notifyDataSetChanged();
-
-                    VIEW=1;
+                    VIEW = 1;
                 }
             }
         });
-
 
 
     }
@@ -110,5 +121,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSingleClick(int pos) {
+    }
+
+    @Override
+    public void onLongClick(int pos) {
     }
 }
