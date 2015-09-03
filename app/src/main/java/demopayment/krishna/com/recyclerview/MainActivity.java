@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 
-public class MainActivity extends AppCompatActivity implements onSingleClickListener,onLongClickListener {
+public class MainActivity extends AppCompatActivity implements onSingleClickListener,onLongTouchClickListener {
     private RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements onSingleClickList
             }
         });
 
-        mAdapter.setLongClickListener(new onLongClickListener() {
+        mAdapter.setLongClickListener(new onLongTouchClickListener() {
 
             @Override
             public void onLongClick(int pos) {

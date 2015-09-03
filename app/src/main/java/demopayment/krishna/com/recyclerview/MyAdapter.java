@@ -4,20 +4,18 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<String> mDataset;
     static int VIEW_TYPE;
     public Context _ctx;
-    public onLongClickListener _longClick;
+    public onLongTouchClickListener _longClick;
     public onSingleClickListener _singleClick;
 
 
@@ -80,7 +78,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             this._singleClick = obj;
     }
 
-    public void setLongClickListener(onLongClickListener obj){
+    public void setLongClickListener(onLongTouchClickListener obj){
             this._longClick = obj;
     }
 
@@ -108,20 +106,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         switch (viewType) {
 
             case 0:
-                ViewGroup vImage = ( ViewGroup ) mInflater.inflate ( R.layout.item_view, parent, false );
-                ListViewHolder vhImage = new ListViewHolder (vImage);
-                return vhImage;
+                ViewGroup viewgroup1 = ( ViewGroup ) mInflater.inflate ( R.layout.item_view, parent, false );
+                ListViewHolder listHolder = new ListViewHolder (viewgroup1);
+                return listHolder;
             case 1:
-                ViewGroup vGroup = ( ViewGroup ) mInflater.inflate ( R.layout.item_grid, parent, false );
-                GridViewHolder vhGroup = new GridViewHolder (vGroup);
-                return vhGroup;
+                ViewGroup viewgroup2 = ( ViewGroup ) mInflater.inflate ( R.layout.item_grid, parent, false );
+                GridViewHolder gridHolder = new GridViewHolder (viewgroup2);
+                return gridHolder;
             default:
-                ViewGroup vGroup0 = ( ViewGroup ) mInflater.inflate ( R.layout.item_grid, parent, false );
-                GridViewHolder vhGroup0 = new GridViewHolder (vGroup0);
-                return vhGroup0;
+                ViewGroup viewgroup3 = ( ViewGroup ) mInflater.inflate ( R.layout.item_grid, parent, false );
+                GridViewHolder gridHolder1 = new GridViewHolder (viewgroup3);
+                return gridHolder1;
         }
 
     }
+
+
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
