@@ -3,6 +3,7 @@ package demopayment.krishna.com.recyclerview;
 import java.util.ArrayList;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,20 +12,48 @@ import android.widget.TextView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<String> mDataset;
+    static int VIEW_TYPE;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+        public ViewHolder(View v) {
+            super(v);
+        }
+    }
+
+
+    public class ListViewHolder extends ViewHolder{
         public TextView txtHeader;
         public TextView txtFooter;
 
-        public ViewHolder(View v) {
-            super(v);
-            txtHeader = (TextView) v.findViewById(R.id.firstLine);
-            txtFooter = (TextView) v.findViewById(R.id.secondLine);
+        public ListViewHolder ( View itemView ) {
+            super ( itemView );
+            txtHeader = (TextView) itemView.findViewById(R.id.firstLine);
+            txtFooter = (TextView) itemView.findViewById(R.id.secondLine);
         }
+    }
+
+    public class GridViewHolder extends ViewHolder{
+        public TextView txtHeader1;
+        public TextView txtFooter1;
+
+        public GridViewHolder ( View itemView ) {
+            super ( itemView );
+            txtHeader1 = (TextView) itemView.findViewById(R.id.firstLine);
+            txtFooter1 = (TextView) itemView.findViewById(R.id.secondLine);
+        }
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        if(VIEW_TYPE==0)
+              return 0;
+        else
+            return 1;
     }
 
     public void add(int position, String item) {
@@ -38,29 +67,59 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         notifyItemRemoved(position);
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+
+
+    public void setType(int type){
+            VIEW_TYPE = type;
+    }
+
     public MyAdapter(ArrayList<String> myDataset) {
         mDataset = myDataset;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
-        // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+
+        View v;
+        ViewHolder vh;
+
+        switch (viewType){
+            case 0:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
+                ListViewHolder lv = new ListViewHolder(v);
+                return lv;
+            case 1:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid, parent, false);
+                GridViewHolder gv = new GridViewHolder(v);
+                return gv;
+            default:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
+                vh = new ViewHolder ( v );
+                return vh;
+        }
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
+    public void onBindViewHolder(ViewHolder viewHolder, int position) {
         final String name = mDataset.get(position);
-        holder.txtHeader.setText(mDataset.get(position));
+       // holder.txtHeader.setText(mDataset.get(position));
+
+
+        switch (viewHolder.getItemViewType () ) {
+            case 0:
+                ListViewHolder listHolder = ( ListViewHolder ) viewHolder;
+                listHolder.txtHeader.setText(mDataset.get(position));
+                break;
+            case 1:
+                GridViewHolder groupViewHolder = ( GridViewHolder ) viewHolder;
+                groupViewHolder.txtHeader1.setText(mDataset.get(position));
+
+                break;
+
+        }
+
+
 
       /*  holder.txtHeader.setOnClickListener(new OnClickListener() {
             @Override
