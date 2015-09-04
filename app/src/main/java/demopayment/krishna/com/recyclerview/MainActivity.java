@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 
-public class MainActivity extends AppCompatActivity implements onSingleClickListener,onLongTouchClickListener {
+public class MainActivity extends AppCompatActivity implements onSingleClickListener,onLongTouchClickListener,onOption1ClickListener,onOption2ClickListener,onOption3ClickListener,onOption4ClickListener {
     private RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -44,6 +44,35 @@ public class MainActivity extends AppCompatActivity implements onSingleClickList
         mAdapter = new MyAdapter(MainActivity.this, myDataset);
         //mAdapter.setType(0);
 
+
+
+        mAdapter.setOption1ClickListener(new onOption1ClickListener() {
+            @Override
+            public void onOption1Click(int pos) {
+                Toast.makeText(MainActivity.this, "Option 1 is Clicked of Item " + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mAdapter.setOption2ClickListener(new onOption2ClickListener() {
+            @Override
+            public void onOption2Click(int pos) {
+                Toast.makeText(MainActivity.this, "Option 2 is Clicked of Item " + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mAdapter.setOption3ClickListener(new onOption3ClickListener() {
+            @Override
+            public void onOption3Click(int pos) {
+                Toast.makeText(MainActivity.this, "Option 3 is Clicked of Item " + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mAdapter.setOption4ClickListener(new onOption4ClickListener() {
+            @Override
+            public void onOption4Click(int pos) {
+                Toast.makeText(MainActivity.this, "Option 4 is Clicked of Item " + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         mAdapter.setSingleClickListener(new onSingleClickListener() {
             @Override
@@ -129,5 +158,25 @@ public class MainActivity extends AppCompatActivity implements onSingleClickList
 
     @Override
     public void onLongClick(int pos) {
+    }
+
+    @Override
+    public void onOption1Click(int pos) {
+
+    }
+
+    @Override
+    public void onOption2Click(int pos) {
+
+    }
+
+    @Override
+    public void onOption3Click(int pos) {
+
+    }
+
+    @Override
+    public void onOption4Click(int pos) {
+
     }
 }

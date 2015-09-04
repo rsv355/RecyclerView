@@ -27,20 +27,40 @@
         android:id="@+id/firstLine"
         android:layout_width="fill_parent"
         android:layout_height="26dip"
-
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Description"
         android:textSize="12sp" />
-        <TextView
-            android:id="@+id/firstLine1"
-            android:layout_width="fill_parent"
-            android:layout_height="26dip"
 
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="Description"
-            android:textSize="12sp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+           android:src="@mipmap/ic_launcher"
+           android:id="@+id/imgOption1"
+           android:layout_width="30dp"
+           android:layout_height="30dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgOption2"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgOption3"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgOption4"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

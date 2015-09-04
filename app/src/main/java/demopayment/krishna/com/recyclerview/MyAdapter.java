@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,6 +18,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public Context _ctx;
     public onLongTouchClickListener _longClick;
     public onSingleClickListener _singleClick;
+
+    public onOption1ClickListener _option1Click;
+    public onOption2ClickListener _option2Click;
+    public onOption3ClickListener _option3Click;
+    public onOption4ClickListener _option4Click;
+    public onOption5ClickListener _option5Click;
 
 
     // 0 - for List Type
@@ -32,10 +39,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public class ListViewHolder extends ViewHolder{
         public TextView txtHeader;
         public LinearLayout listView;
+        public ImageView imgOption1,imgOption2,imgOption3,imgOption4;
+
         public ListViewHolder ( View itemView ) {
             super ( itemView );
             txtHeader = (TextView) itemView.findViewById(R.id.firstLine);
             listView = (LinearLayout) itemView.findViewById(R.id.listView);
+
+            imgOption1 = (ImageView) itemView.findViewById(R.id.imgOption1);
+            imgOption2 = (ImageView) itemView.findViewById(R.id.imgOption2);
+            imgOption3 = (ImageView) itemView.findViewById(R.id.imgOption3);
+            imgOption4 = (ImageView) itemView.findViewById(R.id.imgOption4);
         }
     }
 
@@ -71,6 +85,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         notifyItemRemoved(position);
     }
 
+    public void setOption1ClickListener(onOption1ClickListener obj){
+        this._option1Click = obj;
+    }
+
+    public void setOption2ClickListener(onOption2ClickListener obj){
+        this._option2Click = obj;
+    }
+
+    public void setOption3ClickListener(onOption3ClickListener obj){
+        this._option3Click = obj;
+    }
+
+    public void setOption4ClickListener(onOption4ClickListener obj){
+        this._option4Click = obj;
+    }
+
+    public void setOption5ClickListener(onOption5ClickListener obj){
+        this._option5Click = obj;
+    }
     public void setSingleClickListener(onSingleClickListener obj){
             this._singleClick = obj;
     }
@@ -133,6 +166,39 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     @Override
                     public void onClick(View view) {
                         _singleClick.onSingleClick(position);
+                    }
+                });
+
+
+
+                listHolder.imgOption1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        _option1Click.onOption1Click(position);
+                    }
+                });
+
+
+                listHolder.imgOption2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        _option2Click.onOption2Click(position);
+                    }
+                });
+
+
+                listHolder.imgOption3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        _option3Click.onOption3Click(position);
+                    }
+                });
+
+
+                listHolder.imgOption4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        _option4Click.onOption4Click(position);
                     }
                 });
 
